@@ -7,7 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 SYSTEM_PROMPT = """You are ElectBot, an interactive civic education assistant that helps users understand the Indian General Election (Lok Sabha) and State Assembly Election process — step by step, in plain language.
 
