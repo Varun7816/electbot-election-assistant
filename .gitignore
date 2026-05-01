@@ -1,8 +1,10 @@
 # Environments
 .env
-.venv
-env/
+*.env
+.venv/
 venv/
+env/
+pyvenv.cfg
 ENV/
 env.bak/
 venv.bak/
