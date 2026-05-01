@@ -696,7 +696,7 @@
           { key: 'B', text: 'I have a question about elections', full: 'B' },
           { key: 'C', text: 'Take the quiz', full: 'C' }
         ];
-      } else if (lower.includes('ready for step') || lower.includes('next step')) {
+      } else if (lower.includes('ready for step') || lower.includes('next step') || lower.includes('move on to the next') || lower.includes('would you like to move') || lower.includes('next step?') || lower.includes('move to the next')) {
         options = [
           { key: '▶', text: 'Next Step', full: 'Yes, next step please' },
           { key: '?', text: 'Explain more about this step', full: 'Can you explain more about this step?' },
