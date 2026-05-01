@@ -690,65 +690,31 @@
     function showSmartOptions(botReply) {
       const lower = botReply.toLowerCase();
       let options = [];
-      let label = 'Choose an option:';
-  
-      if (lower.includes('welcome') || lower.includes('how would you like') || 
-          (lower.includes('a)') && lower.includes('b)') && lower.includes('c)') && !lower.includes('score'))) {
+      if (lower.includes('welcome') || lower.includes('how would you like') || lower.includes('a)') && lower.includes('b)') && lower.includes('c)') && !lower.includes('score')) {
         options = [
-          { key: 'A', text: 'Step-by-Step Timeline', full: 'A' },
-          { key: 'B', text: 'Ask a Question', full: 'B' },
-          { key: 'C', text: 'Take the Quiz', full: 'C' }
+          { key: 'A', text: 'Walk me through the election timeline', full: 'A' },
+          { key: 'B', text: 'I have a question about elections', full: 'B' },
+          { key: 'C', text: 'Take the quiz', full: 'C' }
         ];
-  
-      } else if (lower.includes('timeline') || lower.includes('step 1') || 
-                 lower.includes('announcement') || lower.includes('election commission')) {
-        label = '📍 Choose a step OR ask a question:';
+      } else if (lower.includes('ready for step') || lower.includes('next step')) {
         options = [
-          { key: '1', text: 'Election Announcement & MCC', full: 'Tell me about Step 1: Election Announcement and MCC' },
-          { key: '2', text: 'Voter Registration', full: 'Tell me about Step 2: Voter Registration' },
-          { key: '3', text: 'Nomination Filing', full: 'Tell me about Step 3: Nomination Filing' },
-          { key: '4', text: 'Scrutiny of Nominations', full: 'Tell me about Step 4: Scrutiny of Nominations' },
-          { key: '5', text: 'Withdrawal Period', full: 'Tell me about Step 5: Withdrawal Period' },
-          { key: '6', text: 'Campaign Period', full: 'Tell me about Step 6: Campaign Period' },
-          { key: '7', text: 'Silent Period (48hrs before polling)', full: 'Tell me about Step 7: Silent Period' },
-          { key: '8', text: 'Polling Day', full: 'Tell me about Step 8: Polling Day' },
-          { key: '9', text: 'Vote Counting', full: 'Tell me about Step 9: Vote Counting' },
-          { key: '10', text: 'Result Declaration & Government Formation', full: 'Tell me about Step 10: Result Declaration' },
-          { key: '💬', text: 'What is the Model Code of Conduct?', full: 'What is the Model Code of Conduct?' },
-          { key: '💬', text: 'How do I register to vote?', full: 'How do I register to vote?' },
-          { key: '💬', text: 'What is an EVM?', full: 'What is an EVM?' },
-          { key: '💬', text: 'What ID do I need at the polling booth?', full: 'What ID do I need at the polling booth?' },
-          { key: '💬', text: 'What is the minimum voting age?', full: 'What is the minimum voting age?' },
-          { key: '💬', text: 'How many seats are in Lok Sabha?', full: 'How many seats are in Lok Sabha?' }
+          { key: '▶', text: 'Next Step', full: 'Yes, next step please' },
+          { key: '?', text: 'Explain more about this step', full: 'Can you explain more about this step?' },
+          { key: '↩', text: 'Start over', full: 'Start from the beginning' }
         ];
-  
-      } else if ((lower.includes('a)') || lower.includes('b)')) && 
-                 (lower.includes('c)') || lower.includes('d)'))) {
-        label = '🧠 Select your answer:';
+      } else if ((lower.includes('a)') || lower.includes('b)')) && (lower.includes('c)') || lower.includes('d)'))) {
         options = [
           { key: 'A', text: 'Option A', full: 'A' },
           { key: 'B', text: 'Option B', full: 'B' },
           { key: 'C', text: 'Option C', full: 'C' },
           { key: 'D', text: 'Option D', full: 'D' }
         ];
-  
-      } else if (lower.includes('score') || lower.includes('expert') || 
-                 lower.includes('informed voter') || lower.includes('keep learning')) {
-        label = '🏆 What next?';
+      } else if (lower.includes('score') || lower.includes('expert') || lower.includes('informed voter') || lower.includes('keep learning')) {
         options = [
           { key: '🔄', text: 'Retake the quiz', full: 'Retake the quiz' },
           { key: '📍', text: 'Explore the timeline', full: 'Walk me through the election timeline' },
           { key: '💬', text: 'Ask a question', full: 'I have a question about elections' }
         ];
-  
-      } else if (lower.includes('ready for step') || lower.includes('next step')) {
-        label = '▶ Continue:';
-        options = [
-          { key: '▶', text: 'Next Step', full: 'Yes, next step please' },
-          { key: '?', text: 'Explain more about this step', full: 'Can you explain more about this step?' },
-          { key: '↩', text: 'Start over', full: 'Start from the beginning' }
-        ];
-  
       } else {
         options = [
           { key: '📍', text: 'View election timeline', full: 'Walk me through the election timeline' },
@@ -756,14 +722,13 @@
           { key: '💬', text: 'Ask another question', full: 'I have another question' }
         ];
       }
-  
       if (!options.length) return;
       const optRow = document.createElement('div');
       optRow.className = 'options-row';
-      const labelEl = document.createElement('div');
-      labelEl.className = 'options-label';
-      labelEl.textContent = label;
-      optRow.appendChild(labelEl);
+      const label = document.createElement('div');
+      label.className = 'options-label';
+      label.textContent = 'Choose an option:';
+      optRow.appendChild(label);
       options.forEach(opt => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
